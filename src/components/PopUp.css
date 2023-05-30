@@ -1,0 +1,145 @@
+.modal__parent {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.modal__parent h2 {
+  font-weight: 600;
+}
+
+.modal__parent p {
+  font-size: 14px;
+  color: rgb(121, 118, 118);
+}
+
+.modal__backdrop {
+  background: rgba(7, 27, 75, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+}
+
+.modal__body {
+  z-index: 101;
+  background: white;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  text-align: left;
+}
+
+.modal__close {
+  position: absolute;
+  right: 0;
+  top: -15%;
+  z-index: 101;
+}
+
+.modal__close .modal_close_btn {
+  color: white;
+  font-size: 50px;
+}
+
+.plan__parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.plan__parent .plan__child {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+}
+
+.plan__parent .plan__child h4 {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.plan__parent .plan__child h3 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.plan__parent .plan__child ul {
+  margin: 0;
+  padding: 0;
+  list-style-position: inside;
+  font-size: 14px;
+  color: rgb(45, 45, 73);
+}
+
+.plan__parent .plan__child ul li {
+  margin: 20px 0px;
+}
+
+.plan__parent button {
+  background: #00abfa;
+  line-height: 0;
+  height: 40px;
+  padding: 4px 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  margin: 0px 2px;
+  border-radius: 4px;
+}
+
+.plan__parent button:hover {
+  background: #145bff;
+  transition: all 0.2s;
+}
+
+.mod_for {
+  text-align: center;
+}
+.hidden{
+  display: none;
+}
+.sidepop-body{
+  width: 100%;
+  height: 100vh;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 1000;
+  padding-top: 5%;
+  position: absolute;
+  background-color: rgba(128, 128, 128, 0.301);
+}
+.side-inner{
+  width: 80%;
+  height: 5rem;
+  box-shadow: 5px 5px 10px rgb(187, 186, 186);
+  background-color: whitesmoke;
+  border-radius: 10px;
+padding: 2%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: row;
+}
+.side-inner p{
+  font-size: small;
+  color: #282828;
+
+margin-left: 10px;
+}
+.side-inner img{
+  width: 20px;
+  margin-right: 10px;
+  height: 20px;
+}
