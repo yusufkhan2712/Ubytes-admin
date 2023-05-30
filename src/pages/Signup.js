@@ -21,7 +21,7 @@ const Signup = ({ addUser, addRole }) => {
       .then((authUser) => {
         addUser(authUser.user);
         addRole("Merchant");
-        db.collection("Merchant").doc(authUser.user.id).set({
+        db.collection("Merchant").doc(bName).set({
           restaurentName: resName,
           outlets: outlets,
           brandName: bName,
@@ -29,7 +29,7 @@ const Signup = ({ addUser, addRole }) => {
           brandNumber: bName,
           role: "Merchant",
         });
-        db.collection("users").add({
+        db.collection("users").doc(authUser.user.uid).set({
           email: bEmail,
           password: password,
           role: "Merchant",

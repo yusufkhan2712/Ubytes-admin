@@ -242,7 +242,7 @@ function App({ addUser, addRole, user, addMid, addBid }) {
           <Route exact path="/login" component={Login}></Route>
           <Route exact path="/signup" component={Signup}></Route>
 
-         {/*  <Switch>
+          {/*  <Switch>
             <>
               <Route path="/logout" component={logout} />
               <Route

@@ -77,6 +77,9 @@ const BasicInfo = (props) => {
     setMerchantList(data);
   };
   useEffect(() => {
+    if (props.user.role == "Merchant") {
+      setMerchant({ label: props.user.brandName, value: props.user.brandName });
+    }
     if (id) {
       getdata(id);
     } else {
@@ -201,6 +204,7 @@ const BasicInfo = (props) => {
           value={merchant}
           options={merchantList}
           onChange={(e) => setMerchant(e)}
+          isDisabled={props.user.role == "Merchant"}
         />
       </div>
       <div className="input_group">

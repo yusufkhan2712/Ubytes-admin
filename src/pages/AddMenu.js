@@ -30,7 +30,6 @@ class AddMenu extends Component {
   async componentDidMount() {
     await this.loadGroups();
     await this.loadBranch();
-
     if (this.props.match.params.id) {
       const par = [];
       const params = new URLSearchParams(window.location.search);
@@ -48,7 +47,6 @@ class AddMenu extends Component {
 
   async getCurrentBranch() {
     var data = await db
-
       .collection("Branches")
       .doc(this.props.bid ? this.props.bid : this.state.bId)
       .get();
@@ -57,7 +55,6 @@ class AddMenu extends Component {
 
   async loadData() {
     var data = await db.collection("Products").doc(this.state.pId).get();
-
     this.setState({
       ...data.data(),
       selectedMerchant: this.props.user.displayName,
@@ -125,7 +122,6 @@ class AddMenu extends Component {
   submit = async () => {
     this.setState({ loading: true });
     if (!this.props.match.params.id) {
-     
       this.state.selectedBranch.map(async (branch) => {
         let merchantId = await db.collection("Branches").doc(branch.id).get();
         merchantId = merchantId.data().merchantId;
@@ -176,8 +172,6 @@ class AddMenu extends Component {
           productPrice: this.state.productPrice,
           productDescription: this.state.productDescription,
           tags: this.state.tags,
-          merchantName: this.state.selectedMerchant,
-          branchName: this.state.selectedBranch,
           additionalItems: this.state.additionalItems,
         })
         .then(async (k) => {

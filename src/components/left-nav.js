@@ -309,11 +309,11 @@ export default function Leftnav({ role }) {
               items={[
                 { name: "New Products", route: "/item/add" },
                 { name: "View Products", route: "/view/menu" },
-                { name: "Combo's", route: "/combo" },
-                { name: "View Combo", route: "/view/combo" },
-                { name: "Discount", route: "/discount" },
-                { name: "View Discounts", route: "/view/discount" },
-                { name: "Product Bulk upload", route: "/product/bulk" },
+                /*   { name: "Combo's", route: "/combo" },
+                { name: "View Combo", route: "/view/combo" }, */
+                /*   { name: "Discount", route: "/discount" },
+                { name: "View Discounts", route: "/view/discount" }, */
+                /* { name: "Product Bulk upload", route: "/product/bulk" }, */
               ]}
             >
               <div
@@ -662,7 +662,7 @@ export default function Leftnav({ role }) {
             </Link>
           </OverlayTrigger>
           {/* Staff  */}
-          <OverlayTrigger
+          {/*<OverlayTrigger
             placement="bottom"
             overlay={<Tooltip id="button-tooltip-2">Staff</Tooltip>}
           >
@@ -744,7 +744,7 @@ export default function Leftnav({ role }) {
                 </div>
               </div>
             </Dropdown>
-          </OverlayTrigger>
+          </OverlayTrigger>*/}
         </>
       );
     } else if (role === "Super_Admin") {
@@ -908,11 +908,11 @@ export default function Leftnav({ role }) {
               items={[
                 { name: "New Products", route: "/item/add" },
                 { name: "View Products", route: "/view/menu" },
-                { name: "Combo's", route: "/combo" },
+                /*   { name: "Combo's", route: "/combo" },
                 { name: "View Combo", route: "/view/combo" },
                 { name: "Discount", route: "/discount" },
-                { name: "View Discounts", route: "/view/discount" },
-                { name: "Product Bulk upload", route: "/product/bulk" },
+                { name: "View Discounts", route: "/view/discount" }, */
+                /* { name: "Product Bulk upload", route: "/product/bulk" }, */
               ]}
             >
               <div
@@ -1129,7 +1129,7 @@ export default function Leftnav({ role }) {
             </Link>
           </OverlayTrigger>
           {/* Notification  */}
-          <OverlayTrigger
+          {/* <OverlayTrigger
             placement="bottom"
             overlay={<Tooltip id="button-tooltip-2">Notifications</Tooltip>}
           >
@@ -1190,7 +1190,7 @@ export default function Leftnav({ role }) {
                 </div>
               </div>
             </Dropdown>
-          </OverlayTrigger>
+          </OverlayTrigger>*/}
           {/* branding  */}
           <OverlayTrigger
             placement="bottom"
@@ -1261,7 +1261,7 @@ export default function Leftnav({ role }) {
             </Link>
           </OverlayTrigger>
           {/* Staff  */}
-          <OverlayTrigger
+          {/*  <OverlayTrigger
             placement="bottom"
             overlay={<Tooltip id="button-tooltip-2">Staff</Tooltip>}
           >
@@ -1343,7 +1343,7 @@ export default function Leftnav({ role }) {
                 </div>
               </div>
             </Dropdown>
-          </OverlayTrigger>
+          </OverlayTrigger>*/}
         </>
       );
     } else if (role === "Branch") {
@@ -1401,7 +1401,7 @@ export default function Leftnav({ role }) {
                 { name: "View Combo", route: "/view/combo" },
                 { name: "Discount", route: "/discount" },
                 { name: "View Discounts", route: "/view/discount" },
-                { name: "Product Bulk upload", route: "/product/bulk" },
+               /*  { name: "Product Bulk upload", route: "/product/bulk" }, */
               ]}
             >
               <div
@@ -1619,7 +1619,7 @@ export default function Leftnav({ role }) {
           </OverlayTrigger>
 
           {/* Staff  */}
-          <OverlayTrigger
+          {/*  <OverlayTrigger
             placement="bottom"
             overlay={<Tooltip id="button-tooltip-2">Staff</Tooltip>}
           >
@@ -1701,7 +1701,7 @@ export default function Leftnav({ role }) {
                 </div>
               </div>
             </Dropdown>
-          </OverlayTrigger>
+          </OverlayTrigger>*/}
         </>
       );
     }

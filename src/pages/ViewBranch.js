@@ -14,7 +14,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { stableSort, getComparator } from "../utils";
-import db, { storage } from "../firebase";
+import db, { auth, storage } from "../firebase";
 import EnhancedTableHead from "../utils/tableHeader";
 import { connect } from "react-redux";
 
@@ -86,28 +86,38 @@ const ViewBranch = ({ history, user }) => {
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [flist, setFlist] = useState([]);
-
+  const userData = user.user;
   useEffect(() => {
     getRows();
   }, []);
 
-  console.log(user);
-
   const getRows = async () => {
-    const data = await db
-    
-      .collection("Branches")
-      .get();
-    // .orderBy('id').get();
-    const dataarr = [];
-    data.forEach((element) => {
-      let _ = element.data();
-      _["id"] = element.id;
-      dataarr.push(_);
-    });
-    setLoading(false);
-    setList(dataarr);
-    setFlist(dataarr);
+    if (user.role == "Merchant") {
+      const data = await db
+        .collection("Branches")
+        .where("merchantId", "==", user.user.brandName)
+        .get();
+      const dataarr = [];
+      data.forEach((element) => {
+        let _ = element.data();
+        _["id"] = element.id;
+        dataarr.push(_);
+      });
+      setLoading(false);
+      setList(dataarr);
+      setFlist(dataarr);
+    } else {
+      const data = await db.collection("Branches").get();
+      const dataarr = [];
+      data.forEach((element) => {
+        let _ = element.data();
+        _["id"] = element.id;
+        dataarr.push(_);
+      });
+      setLoading(false);
+      setList(dataarr);
+      setFlist(dataarr);
+    }
   };
 
   const filterTablehandler = (term) => {
@@ -224,7 +234,7 @@ const ViewBranch = ({ history, user }) => {
                       selected={isItemSelected}
                     >
                       <TableCell>{index + 1}</TableCell>
-                      <TableCell>{user.user.displayName}</TableCell>
+                      <TableCell>{row?.merchantId}</TableCell>
                       <TableCell>{row?.branchName}</TableCell>
                       <TableCell>
                         {row?.branchEmail ? row?.branchEmail[0]?.value : null}

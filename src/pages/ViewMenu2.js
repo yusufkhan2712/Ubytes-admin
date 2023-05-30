@@ -79,14 +79,16 @@ const ViewMenu2 = ({ user, role, mid, bid }) => {
       });
   };
 
-  const productHandler = () => {
+  const productHandler = async () => {
     if (branchId === "") {
       alert("Select a Product");
     } else {
-      db.collection("Products").onSnapshot((snap) => {
+      let products=await db.collection("Products").where("branchId", "==", branchId.value).where("merchantId", "==", merchantId.value).get();
+        setProduct(products.docs.map((doc) => doc.data()));
+     /* db.collection("Products").onSnapshot((snap) => {
         setProduct(snap.docs.map((doc) => doc.data()));
         console.log(product);
-      });
+      });*/
     }
   };
 

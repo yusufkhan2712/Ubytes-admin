@@ -34,7 +34,7 @@ export const superAdminRoute = () => {
         <Route exact path="/view/combo" component={ViewCombo} />
         <Route path="/edit/menu/:id" component={AddMenu} />
         <Route path="/branch/edit/:id" component={EditBranch} />
-      {/*   <Route exact path="/branch/bulk" component={Bulkupload} /> */}
+        {/*   <Route exact path="/branch/bulk" component={Bulkupload} /> */}
         <Route path="/discount" component={Discount} />
         <Route exact path="/order-history" component={OrderHistory} />
         <Route exact path="/customer-list" component={CustomerList} />
@@ -43,10 +43,11 @@ export const superAdminRoute = () => {
         <Route path="/edit/merchant/:id" component={Merchant} />
         <Route path="/social-media" exact component={SocialMedia} />
         <Route exact path="/merchant/add" component={Merchant} />
-   {/*      <Route exact path="/product/bulk" component={BulkuploadProduct} /> */}
+        {/*      <Route exact path="/product/bulk" component={BulkuploadProduct} /> */}
         <Route exact path="/inventory" component={Inventory} />
         <Route exact path="/qr" component={Qr}></Route>
-      {/*   <Route exact path="/orders/:id/:type/:anlytics" component={BrandPage} /> */}
+
+        {/*   <Route exact path="/orders/:id/:type/:anlytics" component={BrandPage} /> */}
       </Switch>
     );
 }

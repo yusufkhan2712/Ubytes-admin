@@ -15,9 +15,50 @@ export default class Dashboard extends Component {
       orders: orders.docs.map((item) => item.data()),
     });
   }
+  async getMerchants() {
+    let merchants_ = [];
+    let merchants__ = await db.collection("Merchant").get();
+    merchants__.docs.forEach((merchant) => {
+      merchants_.push({
+        label: merchant.data().brandName,
+        value: merchant.id,
+      });
+    });
+    this.setState({ merchants: merchants_ });
+  }
+  async getBranches(value) {
+    if (value) {
+      let branches_ = [];
+      let branches__ = await db
+        .collection("Branches")
+        .where("merchantId", "==", value.value)
+        .get();
+      branches__.docs.forEach((branch) => {
+        branches_.push({
+          label: branch.data().branchName,
+          value: branch.id,
+        });
+      });
+      this.setState({ branches: branches_ });
+    }
+  }
+  async getOrdersByBranch(value) {
+    if (value) {
+      let orders = await db
+        .collection("orders")
+        .where("branchId", "==", value.value)
+        .get();
+      this.setState({
+        orders: orders.docs.map((item) => item.data()),
+      });
+    }
+  }
+
   componentDidMount() {
     sessionStorage.setItem("usersidepage", false);
-    this.getOrders();
+    this.getMerchants();
+
+    /*  this.getOrders(); */
   }
   render() {
     return (
@@ -25,8 +66,21 @@ export default class Dashboard extends Component {
         <Header page="Dashboard"></Header>
         <div className="dashboard-block-row">
           <div className="dashboard-upper-row">
-            <div style={{ width: "35%" }}>
-              <Select className="select-input"></Select>
+            <div style={{ width: "100%", display: "flex" }}>
+              <Select
+                options={this.state.merchants}
+                onChange={(value) => {
+                  this.getBranches(value);
+                }}
+                className="select-input"
+              ></Select>
+              <Select
+                options={this.state.branches}
+                onChange={(value) => {
+                  this.getOrdersByBranch(value);
+                }}
+                className="select-input"
+              ></Select>
             </div>
             <div style={{ width: "15%" }}>
               <button className="dashboard-marketing-button">
@@ -51,11 +105,11 @@ export default class Dashboard extends Component {
           <DashboardBlock
             header="Average basket value"
             quantity={`
-            INR ${
+            INR ${parseInt(
               this.state.orders.reduce((acc, item) => {
                 return acc + item.totalPrice;
               }, 0) / this.state.orders.length
-            }`}
+            )}`}
             unit="avaergae basket value"
           ></DashboardBlock>
           <DashboardBlock

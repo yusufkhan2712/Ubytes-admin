@@ -1,26 +1,34 @@
 import { DataGrid } from "@material-ui/data-grid";
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/header";
+import db from "../firebase";
 const columns = [
-  { field: 'id', headerName: 'S.NO', width: 160 },
-  { field: 'UserName', headerName: 'User Name', width: 160 },
-  { field: 'email', headerName: 'Email', width: 130 },
-  { field: 'phone', headerName: 'Phone Number', width: 130 },
-  { field: 'totalOrders', headerName: 'Total Orders', width: 130 },
-
- 
+  { field: "id", headerName: "S.NO", width: 160 },
+  { field: "name", headerName: "Name", width: 160 },
+  { field: "email", headerName: "Email", width: 180 },
+  { field: "phone", headerName: "Phone Number", width: 180 },
+  { field: "branch", headerName: "Branch", width: 180 },
+  { field: "merchant", headerName: "Merchant", width: 180 },
 ];
 
-const rows = [
-  { id:0,phone:'+9193423424',totalOrders:'234',UserName:'Shfayat Ali',email:'you7844@gmail.com' },
-  { id:1,phone:'+9194425454',totalOrders:'12',UserName:'Ram',email:'Ram@gmail.com' },
-  { id:2,phone:'+9192423444',totalOrders:'1',UserName:'Ahmed',email:'ubytes@gmail.com' },
-  { id:3,phone:'+9197823924',totalOrders:'22',UserName:'Hussain',email:'sh344@gmail.com' },
-  
-  
- 
-];
 function CustomerList() {
+  const [users, setUsers] = React.useState([]);
+
+  const getUsers = async () => {
+    const snapshot = await db.collection("clientuser").get();
+    const users = [];
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      users.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+    setUsers(users);
+  };
+  useEffect(() => {
+    getUsers();
+  }, []);
   return (
     <>
       <Header page="Customer List"></Header>
@@ -43,11 +51,10 @@ function CustomerList() {
           </div>
           <button className="search-button-customer-search">Search</button>
         </div>
-        <div style={{height:'500px'}}>
-        <DataGrid rows={rows} columns={columns} pageSize={6}></DataGrid>
+        <div style={{ height: "500px" }}>
+          <DataGrid rows={users} columns={columns} pageSize={50}></DataGrid>
+        </div>
       </div>
-      </div>
-
     </>
   );
 }
